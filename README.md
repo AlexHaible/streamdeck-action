@@ -1,27 +1,34 @@
 # streamdeck-action
 
-## How to use it
+## Usage Example
 
-Here is an example of how to configure it
 ```yaml
+name: Compile And Release
+
+on:
+  push:
+    tags:
+      - '*' # Only run this if a tag is pushed
+
 jobs:
   build:
-    runs-on: [macos-latest] # 👀 This action only works on macOS
+    runs-on: [macos-latest] # This action only works on macOS, due to the distribution tool Elgato provides
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       # Do you stuff to build the project
-      - uses: SantiMA10/streamdeck-action@v0.0.1
+      - uses: AlexHaible/streamdeck-action@v0.0.3
         with:
-          input-directory: "/dist/dev.santiagomartin.devops.sdPlugin" # Where is your code
-          output-directory: "/release" # Where you want the .streamDeckPlugin
+          input-directory: "/src/com.elgato.template.sdPlugin" # Where is your code? Usually just the '.com.elgato.template' part needs replacing
+          output-directory: "/release" # Where do you want the .streamDeckPlugin file?
       # Create an artifact to download it
       - name: Upload .streamDeckPlugin artifact
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v4.0.0
         with:
-          name: dev.santiagomartin.devops.streamDeckPlugin
+          name: com.elgato.template.streamDeckPlugin # Rename this to suit your plugin
           path: ./release/
 ```
 
+Simply put the above into a standard Github Actions workflow .yml file, make your edits, and you're off to the races!
+
 ## Used by
-- [`SantiMA10/devops-streamdeck`](https://github.com/SantiMA10/devops-streamdeck)
-- [`eXpl0it3r/streamdeck-clockify`](https://github.com/eXpl0it3r/streamdeck-clockify)
+- [`AlexHaible/beledars-spawn-countdown`](https://github.com/AlexHaible/beledars-spawn-countdown)
