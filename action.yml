@@ -1,15 +1,15 @@
-name: "Build StreamDeck App"
-description: "Compile your StreamDeck to publish it!"
-author: "@SantiMA10"
+name: "Compile Stream Deck Plugin"
+description: "This action compiles a Stream Deck Plugins source to a .streamDeckPlugin file"
+author: "@AlexHaible"
 branding:
   icon: check
   color: purple
 inputs:
   input-directory:
-    description: "Where is your code"
+    description: "Where is your code?"
     required: true
   output-directory:
-    description: "Where you want the .streamDeckPlugin"
+    description: "Where you want the .streamDeckPlugin?"
     required: true
 runs:
   using: "composite"
